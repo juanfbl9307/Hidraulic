@@ -68,7 +68,7 @@ function getResults() {
     material = parseInt(material);
     diameter = parseInt(diameter);
     flowRate = parseInt(flowRate);
-    var diameterArray = change(material, diameter);
+    var diameterArray = diameterList();
 
     //Condition of velocity checked
     if (checkVelocity) {
@@ -152,6 +152,25 @@ function change(material, diameter) {
 
     return diameterArray;
 }
+//Adding the diameters to arraylist
+function diameterList() {
+    var material = document.getElementById("materials");
+    var diameterArray = [];
+
+    //Catalog of diameters in different materials
+    switch (material.value) {
+        case (pipes[0].roughness):
+            diameterArray = pipes[0].diameters;
+            break;
+        case (pipes[1].roughness):
+            diameterArray = pipes[1].diameters;
+            break;
+        case (pipes[2].roughness):
+            diameterArray = pipes[2].diameters;
+            break;
+    }
+    return diameterArray;
+}
 //Function to disable chekboxes
 function ckChange(el) {
     var ckName = document.getElementsByName(el.name);
@@ -179,19 +198,14 @@ pipes = [
 ]
 
 
-
+//General variables
 var result = document.getElementById("result");
 var button = document.getElementById("calculate");
 var material = document.getElementById("materials");
 var checkLoss = document.getElementById("heightLoss");
 var checkVelocity = document.getElementById("velocity");
-
-
-
+//Button to get results of calculates
 button.addEventListener("click", getResults);
-
-
-
 
 
 
