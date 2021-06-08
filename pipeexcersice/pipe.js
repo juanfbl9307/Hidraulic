@@ -124,14 +124,14 @@ function getResults() {
 }
 
 //Function to switch the values of diameter by the material
-function change(mat, diam) {
-    var mat = document.getElementById("materials");
-    var diam = document.getElementById("diameters");
+function change(material, diameter) {
+    var material = document.getElementById("materials");
+    var diameter = document.getElementById("diameters");
     var diameterArray = [];
-    diam.innerHTML = "";
+    diameter.innerHTML = "";
 
     //Catalog of diameters in different materials
-    switch (mat.value) {
+    switch (material.value) {
         case (pipes[0].roughness):
             diameterArray = pipes[0].diameters;
             break;
@@ -147,7 +147,7 @@ function change(mat, diam) {
         var newOption = document.createElement("option");
         newOption.value = diameterArray[option];
         newOption.innerHTML = diameterArray[option];
-        diam.options.add(newOption);        
+        diameter.options.add(newOption);        
     }
 
     return diameterArray;
