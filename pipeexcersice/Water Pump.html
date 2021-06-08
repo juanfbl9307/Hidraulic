@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///Users/juanfelipeboterolyons/pipeexcersice/main.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Pump</title>
+    </head><body><p>Here you can calculate your pump capacity:</p>
+    <img src="./Water Pump_files/pump.png" width="auto" height="200">    <img src="./Water Pump_files/rougnhness.img.descarga" width="auto" height="200">
+
+
+
+
+
+    <p> Flowrate <input type="number" id="flow"> (l/s)</p>
+    <p> Material (C)</p>
+    <p><select id="materials" name="materials" onchange="change(&#39;materials&#39;,&#39;diameters&#39;)"> 
+    <option>Select material</option>
+    <option value="150">PVC (150)</option>
+    <option value="140">Cast iron (140)</option>
+    <option value="130">Concrete (130)</option>
+    </select>
+    </p><p id="exitMaterial"> </p>
+    <p> Inner diameter (mm) </p>
+    <p><select id="diameters" name="diameters"><option value=""></option><option value="15.7">15.7</option><option value="20.9">20.9</option><option value="26.6">26.6</option><option value="35">35</option><option value="40.9">40.9</option><option value="52.5">52.5</option><option value="62.7">62.7</option><option value="77.9">77.9</option><option value="102.3">102.3</option></select>
+    </p><p id="diameter"> </p>
+    <p> Equivalent lenght <input type="number" id="equivalentLenght"> %</p>
+    <p> Static height <input type="number" id="staticHeight"> (m)</p>
+    <p> Critical lenght <input type="number" id="criticLenght"> (m)</p>
+    <p> Critical height <input type="number" id="criticHeight"> (m)</p>
+    <p> Pump efficiency <input type="number" id="efficiency"> %</p>
+    <br>
+
+    <p><input type="checkbox" name="checkbox" id="heightLoss" onclick="ckChange(this)" disabled=""> Restriction of height loss</p>
+    <p><input type="number" id="heightlLossNumber"> m/m</p>
+    <p><input type="checkbox" name="checkbox" id="velocity" onclick="ckChange(this)"> Restriction of velocity</p>
+    <p>Range <input type="number" id="minVelocity"> - <input type="number" id="maxVelocity"> (m/s) </p>
+
+    <p> <input type="button" value="Calculate" id="calculate"> </p>
+    <p id="result">Minimun diameter = 35 (mm)<br>Height loss = 0.50593 (m/m) meters/meters<br>Velocity = 1.03938 (m/s)<br>Total loss = NaN (m) meters <br>Total height = NaN (m) meters <br>Pump power = NaN (HP) Horse Power</p>
+
+
+
+    <script src="./Water Pump_files/pipe.js"></script>
+
+
+</body></html>

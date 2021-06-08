@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Pump</title>
+    <p>Here you can calculate your pump capacity:</p>
+    <img src="pump.png" width="auto" height="200">    <img src="rougnhness.img" width="auto" height="200">
+
+
+</head>
+
+<body>
+    <p> Flowrate <input type="number" id="flow"> (l/s)</p>
+    <p> Material (C)</p>
+    <p><select id="materials" name="materials" onchange="change('materials','diameters')"> </p>
+    <option>Select material</option>
+    <option value="150" >PVC (150)</option>
+    <option value="140" >Cast iron (140)</option>
+    <option value="130" >Concrete (130)</option>
+    </select>
+    <p id="exitMaterial"> </p>
+    <p> Inner diameter (mm) </p>
+    <p><select id="diameters" name="diameters"></p> </select>
+    <p id="diameter"> </p>
+    <p> Equivalent lenght <input type="number" id="equivalentLenght"> %</p>
+    <p> Static height <input type="number" id="staticHeight"> (m)</p>
+    <p> Critical lenght <input type="number" id="criticLenght"> (m)</p>
+    <p> Critical height <input type="number" id="criticHeight"> (m)</p>
+    <p> Pump efficiency <input type="number" id="efficiency"> %</p>
+    <br>
+
+    <p><input type="checkbox" name ="checkbox" id="heightLoss" onclick="ckChange(this)"> Restriction of height loss</p>
+    <p><input type="number" id="heightlLossNumber"> m/m</p>
+    <p><input type="checkbox" name ="checkbox" id="velocity" onclick="ckChange(this)" > Restriction of velocity</p>
+    <p>Range <input type="number" id="minVelocity"> - <input type="number" id="maxVelocity"> (m/s) </p>
+
+    <p> <input type="button" value="Calculate" id="calculate"> </p>
+    <p id="result"> </p>
+
+
+
+    <script src="pipe.js"></script>
+</body>
+
+</html>
