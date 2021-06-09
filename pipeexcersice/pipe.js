@@ -37,7 +37,7 @@ function totalHeight(staticHeight, criticHeight) {
 }
 //Function of the pump power in HP
 function pumpPower(flowRate, totalHeight, efficiency) {
-    var pump = new Pump(efficiency/100);
+    var pump = new Pump(efficiency / 100);
     var pumpPower = (flowRate * totalHeight) / (75 * (pump.n));
     return parseFloat(pumpPower.toFixed(3));
 }
@@ -109,7 +109,6 @@ function getResults() {
     }
 
     var heightLossed = heightLoss(flowRate, diameter, material);
-    console.log(heightLossed);
     var totalLenght = criticLenght * (1 + (equivalentLenght / 100));
     var totalH = parseFloat((lossByFriction(heightLossed, totalLenght) + totalHeight(staticHeight, criticHeight)).toFixed(3));
 
@@ -205,6 +204,35 @@ var checkLoss = document.getElementById("heightLoss");
 var checkVelocity = document.getElementById("velocity");
 //Button to get results of calculates
 button.addEventListener("click", getResults);
+
+//taking canvas graphic
+var canvas = document.getElementById("graphic");
+graphic = canvas.getContext("2d");
+//lines in canvas
+/*lines.beginPath();
+lines.moveTo(0,0);
+lines.lineTo(200,200);
+lines.stroke();
+*/
+gradient = graphic.createLinearGradient(0, 0, 300, 0);
+gradient.addColorStop(0, "blue");
+gradient.addColorStop(1, "red");
+graphic.fillStyle = gradient;
+graphic.fillRect(0, 10, 300, 50);
+//text in canvas
+text = canvas.getContext("2d");
+text.font = "15px Arial";
+text.fillText("Vmin",0,80);
+text.fillText("Vmax",260,80);
+
+console.log(text);
+
+
+
+
+
+
+
 
 
 
