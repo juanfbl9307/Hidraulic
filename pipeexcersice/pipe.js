@@ -14,33 +14,31 @@ class Pump {
 }
 //Function of heighLoss (m/m)
 function heightLoss(flowRate, diameter, material) {
-    var flowRate = flowRate;
-    var pipeAux = new Pipe(diameter, material);
-    var heightLo = Math.pow(((flowRate / 1000) / (0.2785 * pipeAux.material * (Math.pow(pipeAux.diameter / 1000, 2.63)))), (1 / 0.54));
-    return parseFloat(heightLo.toFixed(4));
+    var pipe = new Pipe(diameter, material);
+    var heightLoss = Math.pow(((flowRate / 1000) / (0.2785 * pipe.material * (Math.pow(pipe.diameter / 1000, 2.63)))), (1 / 0.54));
+    return parseFloat(heightLoss.toFixed(4));
 }
 //Function of veolcity (m/s)
 function velocity(flowRate, diameter, material) {
-    var flowRate = flowRate;
-    var pipeAux = new Pipe(diameter, material);
-    var velocity = (flowRate / 1000) / ((Math.PI * Math.pow(pipeAux.diameter / 1000, 2)) / 4);
+    var pipe = new Pipe(diameter, material);
+    var velocity = (flowRate / 1000) / ((Math.PI * Math.pow(pipe.diameter / 1000, 2)) / 4);
     return parseFloat(velocity.toFixed(3));
 }
 
 //Function of height loss for the lenght of the pipe (m)
-function lossByFriction(heightL, totalL) {
-    var lossByFriction = heightL * totalL;
+function lossByFriction(heightLoss, totalL) {
+    var lossByFriction = heightLoss * totalL;
     return parseFloat(lossByFriction.toFixed(3));
 }
 //Function of the sumary of heights (m)
 function totalHeight(staticHeight, criticHeight) {
-    var totalH = staticHeight + criticHeight;
-    return totalH;
+    var totalHeight = staticHeight + criticHeight;
+    return totalHeight;
 }
 //Function of the pump power in HP
-function pumpPower(flowRate, totalH, efficiency) {
-    var pump = new Pump(efficiency);
-    var pumpPower = (flowRate * totalH) / (75 * (pump.n / 100));
+function pumpPower(flowRate, totalHeight, efficiency) {
+    var pump = new Pump(efficiency/100);
+    var pumpPower = (flowRate * totalHeight) / (75 * (pump.n));
     return parseFloat(pumpPower.toFixed(3));
 }
 //Function of get all the results
@@ -110,28 +108,28 @@ function getResults() {
         result.innerHTML += "Minimun diameter = " + diameter + " (mm) milimiters<br/>"
     }
 
-    var heightL = heightLoss(flowRate, diameter, material);
-    var totalL = criticLenght * (1 + (equivalentLenght / 100));
-    var totalH = parseFloat((lossByFriction(heightL, totalL) + totalHeight(staticHeight, criticHeight)).toFixed(3));
+    var heightLoss = heightLoss(flowRate, diameter, material);
+    var totalLenght = criticLenght * (1 + (equivalentLenght / 100));
+    var totalHeight = parseFloat((lossByFriction(heightLoss, totalLenght) + totalHeight(staticHeight, criticHeight)).toFixed(3));
 
     //Output of the result, changing the inner HTML of the id = result
-    result.innerHTML += "Height loss = " + heightL + " (m/m) meters/meters<br/>"
+    result.innerHTML += "Height loss = " + heightLoss + " (m/m) meters/meters<br/>"
         + "Velocity = " + velocity(flowRate, diameter, material) + " (m/s)<br/>"
-        + "Total loss = " + lossByFriction(heightL, totalL) + " (m) meters <br/>"
-        + "Total height = " + totalH + " (m) meters <br/>"
-        + "Pump power = " + pumpPower(flowRate, totalH, efficiency) + " (HP) Horse Power";
+        + "Total loss = " + lossByFriction(heightLoss, totalLenght) + " (m) meters <br/>"
+        + "Total height = " + totalHeight + " (m) meters <br/>"
+        + "Pump power = " + pumpPower(flowRate, totalHeight, efficiency) + " (HP) Horse Power";
 
 }
 
 //Function to switch the values of diameter by the material
-function change(material, diameter) {
-    var material = document.getElementById("materials");
+function changeDiameters(material, diameter) {
+    var material = document.getElementById("materials").value;
     var diameter = document.getElementById("diameters");
     var diameterArray = [];
     diameter.innerHTML = "";
 
     //Catalog of diameters in different materials
-    switch (material.value) {
+    switch (material) {
         case (pipes[0].roughness):
             diameterArray = pipes[0].diameters;
             break;
@@ -147,7 +145,7 @@ function change(material, diameter) {
         var newOption = document.createElement("option");
         newOption.value = diameterArray[option];
         newOption.innerHTML = diameterArray[option];
-        diameter.options.add(newOption);        
+        diameter.options.add(newOption);
     }
 
     return diameterArray;
