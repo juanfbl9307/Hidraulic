@@ -208,8 +208,6 @@ var checkVelocity = document.getElementById("velocity");
 button.addEventListener("click", getResults);
 
 
-//esto es de prueba
-
 
 
 
