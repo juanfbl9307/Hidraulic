@@ -99,7 +99,7 @@ function getResults() {
         for (let i = 0; i < diameterArray.length; i++) {
             diameterAux = diameterArray[i];
             materialAux = material;
-            heighLossAux = heightLoss(flowRate, diameterAux, materialAux);
+            heighLossAux = heightLossed(flowRate, diameterAux, materialAux);
             if (heighLossAux < max) {
                 heightLossMin = heighLossAux;
                 diameter = diameterAux;
@@ -108,16 +108,17 @@ function getResults() {
         result.innerHTML += "Minimun diameter = " + diameter + " (mm) milimiters<br/>"
     }
 
-    var heightLoss = heightLoss(flowRate, diameter, material);
+    var heightLossed = heightLoss(flowRate, diameter, material);
+    console.log(heightLossed);
     var totalLenght = criticLenght * (1 + (equivalentLenght / 100));
-    var totalHeight = parseFloat((lossByFriction(heightLoss, totalLenght) + totalHeight(staticHeight, criticHeight)).toFixed(3));
+    var totalH = parseFloat((lossByFriction(heightLossed, totalLenght) + totalHeight(staticHeight, criticHeight)).toFixed(3));
 
     //Output of the result, changing the inner HTML of the id = result
-    result.innerHTML += "Height loss = " + heightLoss + " (m/m) meters/meters<br/>"
+    result.innerHTML += "Height loss = " + heightLossed + " (m/m) meters/meters<br/>"
         + "Velocity = " + velocity(flowRate, diameter, material) + " (m/s)<br/>"
-        + "Total loss = " + lossByFriction(heightLoss, totalLenght) + " (m) meters <br/>"
-        + "Total height = " + totalHeight + " (m) meters <br/>"
-        + "Pump power = " + pumpPower(flowRate, totalHeight, efficiency) + " (HP) Horse Power";
+        + "Total loss = " + lossByFriction(heightLossed, totalLenght) + " (m) meters <br/>"
+        + "Total height = " + totalH + " (m) meters <br/>"
+        + "Pump power = " + pumpPower(flowRate, totalH, efficiency) + " (HP) Horse Power";
 
 }
 
