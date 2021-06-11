@@ -86,6 +86,12 @@ function getResults() {
                 diameter = diameterAux;
             }
         }
+        graphGradient(min, max, velMin, diameter);
+        console.log(min)
+        console.log(max)
+        console.log(velMin)
+        console.log(diameter)
+
         result.innerHTML += "Minimun diameter = " + diameter + " (mm)<br/>"
     }
 
@@ -205,27 +211,28 @@ var checkVelocity = document.getElementById("velocity");
 //Button to get results of calculates
 button.addEventListener("click", getResults);
 
-//taking canvas graphic
-var canvas = document.getElementById("graphic");
-graphic = canvas.getContext("2d");
-//lines in canvas
-/*lines.beginPath();
-lines.moveTo(0,0);
-lines.lineTo(200,200);
-lines.stroke();
-*/
-gradient = graphic.createLinearGradient(0, 0, 300, 0);
-gradient.addColorStop(0, "blue");
-gradient.addColorStop(1, "red");
-graphic.fillStyle = gradient;
-graphic.fillRect(0, 10, 300, 50);
-//text in canvas
-text = canvas.getContext("2d");
-text.font = "15px Arial";
-text.fillText("Vmin",0,80);
-text.fillText("Vmax",260,80);
-
-console.log(text);
+function graphGradient(vmin, vmax, vel, diameter) {
+    canvas = document.getElementById("graphic");
+    //text in canvas
+    text = canvas.getContext("2d");
+    text.font = "15px Arial";
+    text.fillText("Vmin", 0, 120);
+    text.fillText("Vmax", 260, 120);
+    text.fillText(diameter, (300 * ((vmax - vmin) / (vel - vmin))), 30);
+    //lines in canvas
+    lines = canvas.getContext("2d");
+    lines.beginPath();
+    lines.moveTo(200, 40);
+    lines.lineTo(200, 130);
+    lines.stroke();
+    ///Graphic of gradient
+    graphic = canvas.getContext("2d");
+    gradient = graphic.createLinearGradient(0, 0, 300, 0);
+    gradient.addColorStop(0, "blue");
+    gradient.addColorStop(1, "red");
+    graphic.fillStyle = gradient;
+    graphic.fillRect(0, 50, 300, 50);
+}
 
 
 
