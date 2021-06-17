@@ -87,10 +87,7 @@ function getResults() {
             }
         }
         graphGradient(min, max, velMin, diameter);
-        console.log(min)
-        console.log(max)
-        console.log(velMin)
-        console.log(diameter)
+        
 
         result.innerHTML += "Minimun diameter = " + diameter + " (mm)<br/>"
     }
@@ -218,12 +215,13 @@ function graphGradient(vmin, vmax, vel, diameter) {
     text.font = "15px Arial";
     text.fillText("Vmin", 0, 120);
     text.fillText("Vmax", 260, 120);
-    text.fillText(diameter, (300 * ((vmax - vmin) / (vel - vmin))), 30);
+    var xDistance = 300 * (((vmax - vmin) / (vel - vmin))/100)
+    text.fillText(diameter, (xDistance)-10, 30);
     //lines in canvas
     lines = canvas.getContext("2d");
     lines.beginPath();
-    lines.moveTo(200, 40);
-    lines.lineTo(200, 130);
+    lines.moveTo(xDistance, 40);
+    lines.lineTo(xDistance, 130);
     lines.stroke();
     ///Graphic of gradient
     graphic = canvas.getContext("2d");
